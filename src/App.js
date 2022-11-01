@@ -13,7 +13,7 @@ function MyApp() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
+              <a className="nav-link active" aria-current="page" href="/">MyHome</a>
             </li>
             <li className="nav-item">
               <a className="nav-link">About</a>
