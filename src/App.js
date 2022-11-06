@@ -1,29 +1,61 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar'
+import TextForm from './components/TextForm'
+import Alert from './components/Alert'
+import React, {useState} from 'react'
 
-function MyApp() {
+function App() {
+  const [ToggleModeText,setToggleModeText] = useState('Enable');
+  const [mode, setMode] = useState('light');
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (meassage,type) => {
+    setAlert({
+      msg: meassage,
+      type: type
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+  }
+  
+  const toggleMode = ()=>{
+    if(mode === 'light'){
+      setMode('dark');
+      setToggleModeText('Disable');
+      var btn_color = document.body.getElementsByClassName('btn btn-primary');
+      for(var i=0;i<btn_color.length;i++){
+        btn_color[i].style.backgroundColor = 'green';
+        btn_color[i].style.border = '1px solid green';
+      }
+      document.body.style.backgroundColor = 'black';
+      document.body.style.color = 'white';
+      showAlert("Dark mode has been enabled","success");
+    }
+    else{
+      setMode('light');
+      setToggleModeText('Enable');
+      var btn_color = document.body.getElementsByClassName('btn btn-primary');
+      for(var i=0;i<btn_color.length;i++){
+        btn_color[i].style.backgroundColor = 'blue';
+        btn_color[i].style.border = '1px solid blue';
+      }
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black';
+      showAlert("Light mode has been enabled","success");
+    }
+    
+  }
+
   return (
     <>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">Text Utils</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} toggleModeText={ToggleModeText}/>
+    <Alert alertText={alert} />
+    <div className="container my-3">
+    <TextForm heading="Enter your text to analyze" showAlert={showAlert}/>
+    </div>
     </>
   );
 }
 
-export default MyApp;
+export default App;
