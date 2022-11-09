@@ -52,7 +52,7 @@ export default function TextForm(props) {
     const onchangeText = (event) => {
         setText(event.target.value);
     }
-    
+
   return (
     <>
     <div className='container'>
