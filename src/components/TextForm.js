@@ -62,18 +62,18 @@ export default function TextForm(props) {
         </div>
         <textarea className="form-control" id="myBox" rows="8" placeholder='Enter your text here...' value={text} onChange={onchangeText}></textarea>
         </div>
-        <button className="btn btn-primary" onClick={changeToUppercase}>Convert to Uppercase</button>
-        <button className="btn btn-primary mx-2" onClick={changeToLowercase}>Convert to Lowercase</button>
-        <button className="btn btn-primary mx-2" onClick={removeExtraSpaces}>Remove extra spaces</button>
-        <button className="btn btn-primary mx-2" id='id_copy_btn' onClick={copyToClipBoard}>Copy to clipboard</button>
-        <button className="btn btn-primary mx-2" onClick={clearText}>Clear Text</button>
+        <button disabled={text.trim().length===0} className="btn btn-primary my-1" onClick={changeToUppercase}>Convert to Uppercase</button>
+        <button disabled={text.trim().length===0} className="btn btn-primary mx-2 my-1" onClick={changeToLowercase}>Convert to Lowercase</button>
+        <button disabled={text.trim().length===0} className="btn btn-primary mx-2 my-1" onClick={removeExtraSpaces}>Remove extra spaces</button>
+        <button disabled={text.trim().length===0} className="btn btn-primary mx-2 my-1" id='id_copy_btn' onClick={copyToClipBoard}>Copy to clipboard</button>
+        <button disabled={text.trim().length===0} className="btn btn-primary mx-2 my-1" onClick={clearText}>Clear Text</button>
     </div>
     <div className='container my-3'>
         <h3>Your text summary</h3>
-        <p>{(text.split(" ").length-1)}-words and {text.trim().length}-characters</p>
-        <p>{(0.008 * (text.split(" ").length-1)).toFixed(3)} Minutes to read this</p>
+        <p>{(text.split(" ").filter((element)=>{return element.length!==0}).length)}-words and {text.trim().length}-characters</p>
+        <p>{(0.008 * (text.split(" ").filter((element)=>{return element.length!==0}).length)).toFixed(3)} Minutes to read this</p>
         <h3>Preview</h3>
-        <p>{text.length>0 ? text.trim():"Type something to preview here...."}</p>
+        <p>{text.length>0 ? text.trim():"Nothing to preview!"}</p>
     </div>
     </>
   )

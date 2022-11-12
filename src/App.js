@@ -2,9 +2,9 @@ import './App.css';
 import Navbar from './components/Navbar'
 import TextForm from './components/TextForm'
 import Alert from './components/Alert'
-// import About from './components/About'
+import About from './components/About'
 import React, {useState} from 'react'
-// import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 
 function App() {
   const [ToggleModeText,setToggleModeText] = useState('Enable');
@@ -51,12 +51,12 @@ function App() {
 
   return (
     <>
-    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} toggleModeText={ToggleModeText}/>
+    {/* <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} toggleModeText={ToggleModeText}/>
     <Alert alertText={alert} />
     <div className="container my-3">
     <TextForm heading="Enter your text to analyze" showAlert={showAlert}/>
-    </div>
-    {/* <Router>
+    </div> */}
+    <Router>
     <Navbar title="Text Utils" mode={mode} toggleMode={toggleMode} toggleModeText={ToggleModeText}/>
     <Alert alertText={alert} />
     <div className="container my-3">
@@ -67,7 +67,7 @@ function App() {
         
     </Routes>    
     </div>
-    </Router> */}
+    </Router>
     </>
   );
 }
